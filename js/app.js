@@ -74,3 +74,37 @@ const allProducts = [
     },
 
 ]
+
+function displayProduct(){
+    let innerDisplayProduct=''
+
+    allProducts.forEach((element,index)=>{
+        innerDisplayProduct +=`<div class="shop-card">
+        <div class="imgBx">
+            <img src="../images/${element.url}" alt="Men Product One" />
+
+        </div>
+        <div class="content">
+            <div class="productName">
+                <h3>${element.title}
+                </h3>
+            </div>
+            <div class="price-rating">
+                <h2>${priceSign}${element.price}</h2>
+            </div>
+            <div class="rating">
+                <button type="button" class="btn btn-dark">
+                    Add to cart
+                </button>
+
+            </div>
+        </div>
+    </div>`
+    })
+
+
+   let parentProductDiv =document.getElementById('parent-product-div')
+   parentProductDiv.innerHTML=innerDisplayProduct
+}
+
+displayProduct()

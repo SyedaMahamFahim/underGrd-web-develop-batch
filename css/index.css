@@ -1,3 +1,8 @@
+
+.pk{
+    color:#000
+}
+
 body{
     margin: 0;
     box-sizing: border-box;
@@ -7,6 +12,7 @@ body{
 .cart-menu span{
     position: relative;
     top: -1rem;
+    color: var(--red-color);
     background: var(--bs-danger);
     color: white;
     padding: 5px 10px;
