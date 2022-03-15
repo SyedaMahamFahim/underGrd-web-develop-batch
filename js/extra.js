@@ -42,3 +42,9 @@ let products=[
 ]
 
 console.log(products[1].id)
+
+let myName="maham"
+console.log("My name is ",myName,"i am fullstac")
+
+
+console.log(`My name is ${myName}.I am a full`)
