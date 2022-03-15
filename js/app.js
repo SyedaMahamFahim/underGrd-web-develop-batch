@@ -75,11 +75,11 @@ const allProducts = [
 
 ]
 
-function displayProduct(){
-    let innerDisplayProduct=''
+function displayProduct() {
+    let innerDisplayProduct = ''
 
-    allProducts.forEach((element,index)=>{
-        innerDisplayProduct +=`<div class="shop-card">
+    allProducts.forEach((element, index) => {
+        innerDisplayProduct += `<div class="shop-card">
         <div class="imgBx">
             <img src="../images/${element.url}" alt="Men Product One" />
 
@@ -93,7 +93,9 @@ function displayProduct(){
                 <h2>${priceSign}${element.price}</h2>
             </div>
             <div class="rating">
-                <button type="button" class="btn btn-dark">
+                <button type="button" class="btn btn-dark"
+                onclick="addToCart('${index}','${element.title}','${element.url}','${element.price}')"
+                >
                     Add to cart
                 </button>
 
@@ -102,9 +104,22 @@ function displayProduct(){
     </div>`
     })
 
-
-   let parentProductDiv =document.getElementById('parent-product-div')
-   parentProductDiv.innerHTML=innerDisplayProduct
+    let parentProductDiv = document.getElementById('parent-product-div')
+    parentProductDiv.innerHTML = innerDisplayProduct
 }
+
+
+function addToCart(id,title,url,price) {
+   let product={
+    id,
+    title,
+    url,
+    price
+   }
+   console.log(product)
+}
+
+
+
 
 displayProduct()
