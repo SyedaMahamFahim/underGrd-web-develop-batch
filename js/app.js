@@ -93,7 +93,7 @@ function displayProduct() {
             </div>
             <div class="rating">
                 <button type="button" class="btn btn-dark"
-                onclick="addToCart('${element.id}','${element.title}','${element.url}','${element.price}')"
+                onclick="addToCart('${element.id}','${element.title}','${element.url}','${element.price}','${element.qty}')"
                 >
                     Add to cart
                 </button>
@@ -107,23 +107,69 @@ function displayProduct() {
   parentProductDiv.innerHTML = innerDisplayProduct;
 }
 
-function addToCart(id, title, url, price) {
+function onLoadCartQty() {
   let getCartQ = localStorage.getItem("cartQ");
-  getCartQ= parseInt(getCartQ)
+  getCartQ = parseInt(getCartQ);
   if (getCartQ) {
-    localStorage.setItem("cartQ", getCartQ+1)
-    console.log(getCartQ);
+    document.getElementById("cart-menu-span").innerText = getCartQ;
+  } else {
+    document.getElementById("cart-menu-span").innerText = 0;
+  }
+}
+
+function addToCart(id, title, url, price, qty) {
+  let getCartQ = localStorage.getItem("cartQ");
+  getCartQ = parseInt(getCartQ);
+  if (getCartQ) {
+    localStorage.setItem("cartQ", getCartQ + 1);
+    document.getElementById("cart-menu-span").innerText = getCartQ + 1;
   } else {
     localStorage.setItem("cartQ", 1);
+    document.getElementById("cart-menu-span").innerText = 1;
   }
 
-  //    let product={
-  //     id,
-  //     title,
-  //     url,
-  //     price
-  //    }
-  //    console.log(product)
+  let product = {
+    id: parseInt(id),
+    title,
+    url,
+    price: parseInt(price),
+    qty: parseInt(qty),
+  };
+  setItemsInCart(product);
+}
+
+function setItemsInCart(product) {
+  let getProductsInCart = localStorage.getItem("setProductsInCart");
+  getProductsInCart = JSON.parse(getProductsInCart);
+
+
+  if (getProductsInCart == undefined || getProductsInCart == null) {
+    getProductsInCart = [product];
+  }else{
+    getProductsInCart = ["maham 2"];
+  }
+  localStorage.setItem("setProductsInCart", JSON.stringify(getProductsInCart));
 }
 
 displayProduct();
+onLoadCartQty();
+
+// string to number === ParseInt(string)
+// console.log("product in setItemsInCart funtion",product)
+// let getProductsInCart=localStorage.getItem('setProductsInCart')
+// console.log(getProductsInCart)
+// console.log(typeof getProductsInCart)
+// let getProductsInCart=localStorage.getItem('setProductsInCart')
+// console.log("getProductsInCart",JSON.parse(getProductsInCart))
+// object to string ==== JSON.stringify(object)
+// string to object ===
+// Localstorage save always string "" '' ``
+// localStorage.setItem("setProductsInCart",1)
+
+// '{
+//     id:parseInt(id),
+//     title,
+//     url,
+//     price:parseInt(price),
+//     qty:parseInt(qty)
+//    }'
